@@ -33,10 +33,10 @@ For identifying entities within the loaded body of text.<br><br>
 `analyzer.find_entities()`<br><br>
 optional parameters:<br><br>
 `entity_types_of_interest` - list of entity types for recognition.  Default value is `['ORG', 'PERSON', 'FAC', 'GPE', 'LOC', 'EVENT']`  All possible lables include: `CARDINAL, DATE, EVENT, FAC, GPE, LANGUAGE, LAW, LOC, MONEY, NORP, ORDINAL, ORG, PERCENT, PERSON, PRODUCT, QUANTITY, TIME, WORK_OF_ART` For a description of each, visit https://spacy.io/models/en. <br><br>
-`analyzer.entities` - dictionary of entities and their taxs (dict).<br><br>
+`analyzer.entities` - dictionary of entities and their tags (dict).<br><br>
 `analyzer.sentences` - dictionary of entities and concatenated sentences containing each entity (dict).  Keys are entities and values are the concatenated sentences mentioning that entity.
 
-### Measure emotional content
+### Measure Emotional Content
 For measuring sentiment and emotional affect of sentences that mention each entity.<br><br>
 `analyzer.emote()`<br><br>
 `analyzer.sentiments` - Vader composite sentiment scores for each entity (dict).  Keys are entities and values are the composite sentiment score for that entity.<br><br>
