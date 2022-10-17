@@ -13,10 +13,10 @@ Sentimizer will measure sentiment around specific entities within text.  It is b
 * 2022-10-17: initial commit.
 
 ## Example Usage
-`pip install sentimizer`<br>
+`pip install sentimizer`
 
 ### Instantiate SentiMizer Object
-`from sentimizer import SentiMizer`<br>
+`from sentimizer import SentiMizer`<br><br>
 `analyzer = SentiMizer()`
 
 ### Load Text
@@ -32,7 +32,7 @@ For appending additional text to the initial input.<br><br>
 For identifying entities within the loaded body of text.<br><br>
 `analyzer.find_entities()`<br><br>
 optional parameters:<br><br>
-`entity_types_of_interest` - list of entity types for recognition.  Default value is `['ORG', 'PERSON', 'FAC', 'GPE', 'LOC', 'EVENT']`  All possible lables include: `CARDINAL, DATE, EVENT, FAC, GPE, LANGUAGE, LAW, LOC, MONEY, NORP, ORDINAL, ORG, PERCENT, PERSON, PRODUCT, QUANTITY, TIME, WORK_OF_ART` For a description of each, visit https://spacy.io/models/en. <br>
+`entity_types_of_interest` - list of entity types for recognition.  Default value is `['ORG', 'PERSON', 'FAC', 'GPE', 'LOC', 'EVENT']`  All possible lables include: `CARDINAL, DATE, EVENT, FAC, GPE, LANGUAGE, LAW, LOC, MONEY, NORP, ORDINAL, ORG, PERCENT, PERSON, PRODUCT, QUANTITY, TIME, WORK_OF_ART` For a description of each, visit https://spacy.io/models/en. <br><br>
 `analyzer.entities` - dictionary of entities and their taxs (dict).<br><br>
 `analyzer.sentences` - dictionary of entities and concatenated sentences containing each entity (dict).  Keys are entities and values are the concatenated sentences mentioning that entity.
 
