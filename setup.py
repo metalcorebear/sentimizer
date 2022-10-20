@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="sentimizer",
-    version="1.0",
+    version="2.0",
     author="metalcorebear",
     author_email="mark.mbailey@gmail.com",
     description="Sentimizer will measure sentiment around specific entities within text.",

@@ -48,8 +48,8 @@ class SentiMizer():
         else:
             self.text = self.text + ' ' + text
     
-    def find_entities(self, entity_types_of_interest = ['ORG', 'PERSON', 'FAC', 'GPE', 'LOC', 'EVENT']):
-        nlp = spacy.load("en_core_web_sm")
+    def find_entities(self, model="en_core_web_sm", entity_types_of_interest = ['NORP', 'ORG', 'PERSON', 'FAC', 'GPE', 'LOC', 'EVENT']):
+        nlp = spacy.load(model)
         entities = nlp(self.text)
         self.entities = dict([(str(x), x.label_) for x in entities.ents if x.label_ in entity_types_of_interest])
         ents = list(self.entities.keys())
@@ -62,20 +62,28 @@ class SentiMizer():
                     sent_list.append(sentence)
             self.sentences.update({ent:' '.join(sent_list)})
             
-    def emote(self):
+    def emote(self, entity_type=None):
         if self.text != None:
             if self.entities == None:
-                self.find_entities()
+                print('Error: Find entities first.')
             # NLTK Vader sentiment scores
             vader = SentimentIntensityAnalyzer()
             self.sentiments = dict()
             self.affect = dict()
-            for key in self.sentences:
-                pol = vader.polarity_scores(self.sentences[key])
+            # Filter by entity type
+            if entity_type != None:
+                filtered_entities = {key:value for (key, value) in self.entities.items() if value == entity_type}
+                entity_list = list(filtered_entities.keys())
+                filtered_sentences = {key:value for (key, value) in self.sentences.items() if key in entity_list}
+            else:
+                filtered_sentences = self.sentences
+                filtered_entities = self.entities
+            for key in filtered_sentences:
+                pol = vader.polarity_scores(filtered_sentences[key])
                 self.sentiments.update({key:pol['compound']})
             # NRCLex affect scores
-            for key in self.sentences:
-                aff = NRCLex(self.sentences[key])
+            for key in filtered_sentences:
+                aff = NRCLex(filtered_sentences[key])
                 affect_frequencies = aff.affect_frequencies
                 if 'anticip' in affect_frequencies:
                   del affect_frequencies['anticip']
